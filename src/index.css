@@ -1,5 +1,26 @@
+html, body, #root {
+  height: 100%;
+}
+html,
 body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  background: #000000;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-input {
+  width: 300px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.ant-input-search-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 16px;
+  background: linear-gradient(to right, #a8ff78, #78ffd6);
 }
