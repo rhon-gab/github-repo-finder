@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ListRepos } from '../listRepos/ListRepos'
-import { SavedRepos } from '../SavedRepos'
+import { SavedRepos } from '../SavedRepos/SavedRepos'
 import { useQuery } from "@apollo/client";
 import { SEARCH_REPOS } from "../../graphql/queries";
 import { Form, Input } from "antd";
@@ -9,18 +9,20 @@ import {
     TextLogo,
     P
 } from "./repoContainerStyle";
-
 const { Search } = Input;
+
 export const RepoContainer = () => {
-    const [repoName, setRepoName] = useState();
+
+    const [repoName, setRepoName] = useState("");
     const { loading, error, data, fetchMore } = useQuery(SEARCH_REPOS, {
         variables: { queryString: `name:${repoName}`, cursor: null },
     });
+
     const handleSearchInput = (inputValue) => {
         setRepoName(inputValue);
     };
-    if (loading) return <P>Loading...</P>;
-    if (error) return <P>Error :(</P>;
+
+    if (error) return <P>No data</P>;
 
     return (
         <div>
@@ -37,7 +39,7 @@ export const RepoContainer = () => {
                     </Form.Item>
                 </Form>
             </HeaderBox>
-            <ListRepos data={data} fetchMore={fetchMore}/>
+            <ListRepos repos={data} fetchMore={fetchMore} loading={loading} />
             <SavedRepos />
         </div>
     );

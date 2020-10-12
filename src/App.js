@@ -5,11 +5,13 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from "@apollo/client";
 import { RepoContainer } from './components/repoContainer/RepoContainer'
 import styled from "styled-components";
+import { query } from "./graphql/queries";
 
 import './App.css';
 
-const TOKEN = '2b915d61b753c4d5f5b9897847f7e42d3363e4c9'
+const TOKEN = ''
 
+const cache = new InMemoryCache();
 const client = new ApolloClient({
   link: new HttpLink({
     uri: 'https://api.github.com/graphql',
@@ -17,8 +19,14 @@ const client = new ApolloClient({
       Authorization: `token ${TOKEN}`,
     },
   }),
-  cache: new InMemoryCache(),
+  cache,
 });
+
+const data = {
+  savedRepos: [],
+};
+
+client.writeQuery({ query, data });
 
 class App extends Component {
   render() {
@@ -37,6 +45,4 @@ export default App;
 const Wrapper = styled.div`
   flex-grow: 1;
   height: 100%;
-  background-color: #000000;
-  background-size: 120% 190%;
 `;

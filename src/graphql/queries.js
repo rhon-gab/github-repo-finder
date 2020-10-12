@@ -32,3 +32,52 @@ export const SEARCH_REPOS = gql`
     }
   }
 `;
+
+export const query = gql`
+  {
+    savedRepos @client {
+      url
+      id
+      name
+      owner {
+        login
+        id
+        url
+        avatarUrl
+      }
+      forkCount
+      stargazers {
+        totalCount
+      }
+      watchers {
+        totalCount
+      }
+    }
+  }
+`;
+
+export const VIEW_REPOS = gql`
+query getRepos($name: String!, $owner: String!) {
+  repositoryOwner (login: $owner) {
+    repository(name: $name) {
+      url
+      id
+      description
+      name
+      owner {
+        login
+        id
+        url
+        avatarUrl
+      }
+      forkCount
+      stargazers {
+        totalCount
+      }
+      watchers {
+        totalCount
+      }
+    }
+  }
+}
+`;

@@ -4,8 +4,7 @@ html, body, #root {
 html,
 body {
   margin: 0;
-  background: #000000;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
